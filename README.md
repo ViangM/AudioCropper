@@ -214,3 +214,7 @@ pwsh build/pack-ffmpeg.ps1 -SourceDirectory D:\ffmpeg-7.1-winarm64 -Runtime win-
 对外分发携带 FFmpeg 的产物前，必须固定版本与构建来源、保存完整构建配置、
 确认 LGPL/GPL 适用条款并随包提供所需声明与源码获取方式（设计文档 4.4）。
 仓库本身不包含 FFmpeg 二进制（见 `.gitignore`）。
+
+---
+
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
