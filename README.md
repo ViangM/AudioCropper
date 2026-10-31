@@ -1,5 +1,7 @@
 # AudioCropper
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 面向 Windows 的轻量级离线音频分割工具：选择本地音频（支持多选、拖放、整个文件夹递归导入）→ 设置分段时长或片段数量 → 每个源文件的结果保存到其同目录下的同名文件夹。
 
 发布架构的权威说明见 [AudioCropper-release-architecture.md](docs/AudioCropper-release-architecture.md)（原始设计文档）。批量导入、WebM 支持是实现层对设计文档的扩展。
@@ -204,7 +206,11 @@ pwsh build/pack-ffmpeg.ps1 -SourceDirectory D:\ffmpeg-7.1-winarm64 -Runtime win-
 | 单元测试 | 尚无测试工程（端到端验证用临时 harness 完成，未入库） |
 | 安装目录默认值 | 目前为 `%LOCALAPPDATA%\Programs\AudioCropper`，仍属待定项 |
 
-## 许可证注意
+## 许可证
 
-FFmpeg 的许可证义务取决于具体构建。发布前必须固定版本与构建来源、保存完整构建配置、
+本项目源码采用 [MIT License](LICENSE)。
+
+**FFmpeg 是独立组件，不适用 MIT。** 它的许可证义务取决于具体构建版本与编译选项。
+对外分发携带 FFmpeg 的产物前，必须固定版本与构建来源、保存完整构建配置、
 确认 LGPL/GPL 适用条款并随包提供所需声明与源码获取方式（设计文档 4.4）。
+仓库本身不包含 FFmpeg 二进制（见 `.gitignore`）。
