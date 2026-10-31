@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+
+    <AssemblyName>AudioCropper</AssemblyName>
+    <RootNamespace>AudioCropper</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+
+    <Version>0.2.3</Version>
+    <FileVersion>0.2.3.0</FileVersion>
+    <AssemblyVersion>0.2.3.0</AssemblyVersion>
+    <Product>AudioCropper</Product>
+    <Company>AudioCropper</Company>
+    <Description>Offline audio splitting tool for Windows.</Description>
+
+    <!-- 只带英文卫星资源，减小体积 -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+    <!-- 明确的架构默认值；publish.ps1 会按目标覆盖 -->
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <!--
+    发布基线：自包含单文件。
+    直接运行 EXE 即可用，用户无需预装 .NET。
+  -->
+  <PropertyGroup>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <!-- WinForms 不支持裁剪（会破坏反射/COM），保持关闭 -->
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <!--
+  可选：把架构匹配的 FFmpeg 二进制嵌入主 EXE。
+  约定目录：Resources/ffmpeg/<RuntimeIdentifier>/
+  例如：   Resources/ffmpeg/win-x64/ffmpeg.exe
+          Resources/ffmpeg/win-x64/ffprobe.exe
+          Resources/ffmpeg/win-x64/manifest.txt   (每行 "文件名 sha256")
+  build/pack-ffmpeg.ps1 负责生成该目录与 manifest.txt。
+  -->
+  <ItemGroup Condition="Exists('Resources\ffmpeg\$(RuntimeIdentifier)')">
+    <EmbeddedResource Include="Resources\ffmpeg\$(RuntimeIdentifier)\*.*">
+      <LogicalName>ffmpeg.$(RuntimeIdentifier).%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AudioCropper.Tests" />
+  </ItemGroup>
+
+</Project>

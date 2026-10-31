@@ -1,0 +1,18 @@
+# 统一换行，避免不同机器上产生无意义 diff
+* text=auto
+
+*.cs     text eol=crlf
+*.csproj text eol=crlf
+*.sln    text eol=crlf
+*.ps1    text eol=crlf
+*.manifest text eol=crlf
+
+*.md     text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+
+# 二进制
+*.exe    binary
+*.dll    binary
+*.png    binary
+*.ico    binary

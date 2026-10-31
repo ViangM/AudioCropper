@@ -1,0 +1,23 @@
+# 构建产物
+bin/
+obj/
+artifacts/
+publish/
+
+# 用户数据（便携模式）
+Data/
+
+# FFmpeg 二进制由 build/pack-ffmpeg.ps1 放入，通常不入库
+src/AudioCropper/Resources/ffmpeg/**/*.exe
+src/AudioCropper/Resources/ffmpeg/**/*.dll
+
+# IDE
+.vs/
+.idea/
+*.user
+*.suo
+
+# 其它
+*.log
+*.tmp
+.DS_Store
