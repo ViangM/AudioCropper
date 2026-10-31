@@ -10,6 +10,7 @@
 *.md     text eol=lf
 *.json   text eol=lf
 *.yml    text eol=lf
+LICENSE  text eol=lf
 
 # 二进制
 *.exe    binary
